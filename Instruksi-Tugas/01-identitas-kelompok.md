@@ -15,14 +15,14 @@
 ## Anggota & Role
 
 **Anggota 1**
-- Nama Lengkap: `Muhammad Naufal Tiftazani`
-- NIM: `230705117`
+- Nama Lengkap: `Ikhlassul Amal`
+- NIM: `230705105`
 - Role: `Frontend Developer`
 - Teknologi: `Next.js, Tailwind CSS v4, React Query`
 
 **Anggota 2**
-- Nama Lengkap: `Ikhlassul Amal`
-- NIM: `230705105`
+- Nama Lengkap: `Muhammad Naufal Tiftazani`
+- NIM: `230705117`
 - Role: `Backend Developer`
 - Teknologi: `Laravel 11, REST API, JWT Authentication`
 
