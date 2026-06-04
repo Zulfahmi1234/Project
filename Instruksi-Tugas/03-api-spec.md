@@ -1,14 +1,3 @@
-## Catatan Implementasi
-
-**HTTP Client:** Menggunakan Laravel HTTP Client (wrapper Guzzle bawaan Laravel)
-untuk komunikasi ke Open-Meteo API. Tidak menggunakan Axios atau library eksternal lainnya.
-
-**Arsitektur Backend:**
-- **Service Container:** Digunakan untuk binding dan dependency injection antar service class.
-- **Service Provider:** Mendaftarkan binding HTTP Client dan konfigurasi third-party API ke dalam container.
-- **Facades:** Digunakan untuk akses Http, Cache, dan Log secara ekspresif di seluruh lapisan aplikasi.
-
-
 # API Specification
 
 ---
@@ -127,12 +116,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Validasi gagal.",
-    "errors": {
-        "email": ["Format email tidak valid."],
-        "password": ["Password wajib diisi."]
-    }
+  "status": "error",
+  "message": "Email atau password salah."
 }
 ```
 
@@ -600,3 +585,12 @@ Accept: application/json
 ```
 
 ---
+## Catatan Implementasi
+
+**HTTP Client:** Menggunakan Laravel HTTP Client (wrapper Guzzle bawaan Laravel)
+untuk komunikasi ke Open-Meteo API. Tidak menggunakan Axios atau library eksternal lainnya.
+
+**Arsitektur Backend:**
+- **Service Container:** Digunakan untuk binding dan dependency injection antar service class.
+- **Service Provider:** Mendaftarkan binding HTTP Client dan konfigurasi third-party API ke dalam container.
+- **Facades:** Digunakan untuk akses Http, Cache, dan Log secara ekspresif di seluruh lapisan aplikasi.
