@@ -594,3 +594,98 @@ untuk komunikasi ke Open-Meteo API. Tidak menggunakan Axios atau library ekstern
 - **Service Container:** Digunakan untuk binding dan dependency injection antar service class.
 - **Service Provider:** Mendaftarkan binding HTTP Client dan konfigurasi third-party API ke dalam container.
 - **Facades:** Digunakan untuk akses Http, Cache, dan Log secara ekspresif di seluruh lapisan aplikasi.
+---
+
+## 10. Get City Boundary GeoJSON
+
+**Method:** `GET`
+
+**URL:** `/api/v1/geocoding/boundary`
+
+**Deskripsi:** `Mengambil data GeoJSON polygon batas wilayah (administrative boundary) sebuah kota atau daerah dari Nominatim (OpenStreetMap). Backend bertindak sebagai proxy untuk menghindari CORS dan melakukan caching hasil (TTL: 24 jam, karena data batas wilayah jarang berubah). Respons GeoJSON digunakan Frontend untuk merender layer polygon outline di atas peta MapLibre GL.`
+
+**Autentikasi Diperlukan:** `Ya`
+
+**Sumber:** `Third-Party API — Nominatim (OpenStreetMap)`
+
+**Nominatim Endpoint yang Diproxy:**
+`https://nominatim.openstreetmap.org/search?q={q}&polygon_geojson=1&format=json&limit=1`
+
+**Request Headers:**
+
+```
+Authorization: Bearer <token>
+Accept: application/json
+```
+
+**Query Parameters:** `?q=Banda+Aceh`
+
+**Request Body:** `-`
+
+**Response Sukses (`200 OK`):**
+
+```json
+{
+    "status": "success",
+    "data": {
+        "query": "Banda Aceh",
+        "cached": true,
+        "cache_expires_at": "2025-01-02T10:00:00Z",
+        "boundary": {
+            "type": "Feature",
+            "properties": {
+                "display_name": "Banda Aceh, Aceh, Indonesia",
+                "osm_id": 3629770,
+                "place_id": 298765432,
+                "boundingbox": ["5.4921", "5.6083", "95.2615", "95.4065"]
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [95.2615, 5.4921],
+                        [95.4065, 5.4921],
+                        [95.4065, 5.6083],
+                        [95.2615, 5.6083],
+                        [95.2615, 5.4921]
+                    ]
+                ]
+            }
+        }
+    }
+}
+```
+
+**Response Gagal — Kota Tidak Ditemukan (`404 Not Found`):**
+
+```json
+{
+    "status": "error",
+    "message": "Batas wilayah untuk kota ini tidak ditemukan di OpenStreetMap."
+}
+```
+
+**Response Gagal — Query Terlalu Pendek (`422 Unprocessable Entity`):**
+
+```json
+{
+    "status": "error",
+    "message": "Parameter pencarian minimal 2 karakter."
+}
+```
+
+**Response Gagal — Nominatim Tidak Merespons (`502 Bad Gateway`):**
+
+```json
+{
+    "status": "error",
+    "message": "Gagal mengambil data batas wilayah dari layanan eksternal. Coba lagi nanti."
+}
+```
+
+**Catatan Implementasi:**
+- Cache key format: `boundary_{q_normalized}` (lowercase, spasi diganti underscore)
+- TTL cache: **24 jam** (data batas wilayah sangat stabil, tidak perlu sering diperbarui)
+- Wajib kirim header `User-Agent` saat request ke Nominatim: `User-Agent: AeroCast/1.0 (contact: {email_kelompok})`
+- Nominatim memiliki rate limit: **1 request/detik**. Cache adalah wajib, bukan opsional.
+- Jika `geometry.type` adalah `MultiPolygon`, tetap dikembalikan as-is — MapLibre GL mendukung keduanya.
