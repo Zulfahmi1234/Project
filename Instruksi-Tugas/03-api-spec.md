@@ -25,10 +25,10 @@ Accept: application/json
 
 ```json
 {
-    "name": "string",
-    "email": "string",
-    "password": "string",
-    "password_confirmation": "string"
+  "name": "string",
+  "email": "string",
+  "password": "string",
+  "password_confirmation": "string"
 }
 ```
 
@@ -36,18 +36,18 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "message": "Registrasi berhasil.",
-    "data": {
-        "user": {
-            "id": 1,
-            "name": "Naufal Tiftazani",
-            "email": "naufal@student.ac.id",
-            "created_at": "2025-01-01T10:00:00.000000Z"
-        },
-        "access_token": "1|LaravelSanctumTokenExample...",
-        "token_type": "Bearer"
-    }
+  "status": "success",
+  "message": "Registrasi berhasil.",
+  "data": {
+    "user": {
+      "id": 1,
+      "name": "Naufal Tiftazani",
+      "email": "naufal@student.ac.id",
+      "created_at": "2025-01-01T10:00:00.000000Z"
+    },
+    "access_token": "1|LaravelSanctumTokenExample...",
+    "token_type": "Bearer"
+  }
 }
 ```
 
@@ -55,12 +55,12 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Validasi gagal.",
-    "errors": {
-        "email": ["Email sudah terdaftar."],
-        "password": ["Password minimal 8 karakter."]
-    }
+  "status": "error",
+  "message": "Validasi gagal.",
+  "errors": {
+    "email": ["Email sudah terdaftar."],
+    "password": ["Password minimal 8 karakter."]
+  }
 }
 ```
 
@@ -89,8 +89,8 @@ Accept: application/json
 
 ```json
 {
-    "email": "user@student.ac.id",
-    "password": "password123"
+  "email": "user@student.ac.id",
+  "password": "password123"
 }
 ```
 
@@ -98,17 +98,17 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "message": "Login berhasil.",
-    "data": {
-        "user": {
-            "id": 1,
-            "name": "Naufal Tiftazani",
-            "email": "user@student.ac.id"
-        },
-        "access_token": "1|LaravelSanctumTokenExample...",
-        "token_type": "Bearer"
-    }
+  "status": "success",
+  "message": "Login berhasil.",
+  "data": {
+    "user": {
+      "id": 1,
+      "name": "Naufal Tiftazani",
+      "email": "user@student.ac.id"
+    },
+    "access_token": "1|LaravelSanctumTokenExample...",
+    "token_type": "Bearer"
+  }
 }
 ```
 
@@ -125,12 +125,12 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Validasi gagal.",
-    "errors": {
-        "email": ["Format email tidak valid."],
-        "password": ["Password wajib diisi."]
-    }
+  "status": "error",
+  "message": "Validasi gagal.",
+  "errors": {
+    "email": ["Format email tidak valid."],
+    "password": ["Password wajib diisi."]
+  }
 }
 ```
 
@@ -162,8 +162,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "message": "Logout berhasil. Token telah dihapus."
+  "status": "success",
+  "message": "Logout berhasil. Token telah dihapus."
 }
 ```
 
@@ -171,8 +171,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Token tidak valid atau sudah kedaluwarsa."
+  "status": "error",
+  "message": "Token tidak valid atau sudah kedaluwarsa."
 }
 ```
 
@@ -203,28 +203,28 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "city": "Banda Aceh",
-        "latitude": 5.5483,
-        "longitude": 95.3238,
-        "timezone": "Asia/Jakarta",
-        "current": {
-            "time": "2025-01-01T10:00",
-            "temperature": 31.2,
-            "feels_like": 34.5,
-            "humidity": 78,
-            "wind_speed": 12.4,
-            "wind_direction": 180,
-            "condition": "Cerah Berawan",
-            "is_day": true
-        },
-        "units": {
-            "temperature": "°C",
-            "wind_speed": "km/h",
-            "humidity": "%"
-        }
+  "status": "success",
+  "data": {
+    "city": "Banda Aceh",
+    "latitude": 5.5483,
+    "longitude": 95.3238,
+    "timezone": "Asia/Jakarta",
+    "current": {
+      "time": "2025-01-01T10:00",
+      "temperature": 31.2,
+      "feels_like": 34.5,
+      "humidity": 78,
+      "wind_speed": 12.4,
+      "wind_direction": 180,
+      "condition": "Cerah Berawan",
+      "is_day": true
+    },
+    "units": {
+      "temperature": "°C",
+      "wind_speed": "km/h",
+      "humidity": "%"
     }
+  }
 }
 ```
 
@@ -232,8 +232,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Parameter latitude dan longitude wajib diisi."
+  "status": "error",
+  "message": "Parameter latitude dan longitude wajib diisi."
 }
 ```
 
@@ -241,8 +241,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Gagal mengambil data dari layanan cuaca eksternal. Coba lagi nanti."
+  "status": "error",
+  "message": "Gagal mengambil data dari layanan cuaca eksternal. Coba lagi nanti."
 }
 ```
 
@@ -275,43 +275,43 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "city": "Banda Aceh",
-        "latitude": 5.5483,
-        "longitude": 95.3238,
-        "cached": true,
-        "cache_expires_at": "2025-01-01T11:00:00Z",
-        "forecast": [
-            {
-                "date": "2025-01-01",
-                "day_name": "Rabu",
-                "condition": "Cerah Berawan",
-                "temperature_max": 33.5,
-                "temperature_min": 24.1,
-                "humidity_mean": 76,
-                "wind_speed_max": 18.2,
-                "precipitation_sum": 0.0,
-                "precipitation_probability_max": 10
-            },
-            {
-                "date": "2025-01-02",
-                "day_name": "Kamis",
-                "condition": "Hujan Ringan",
-                "temperature_max": 29.8,
-                "temperature_min": 23.5,
-                "humidity_mean": 88,
-                "wind_speed_max": 22.0,
-                "precipitation_sum": 4.5,
-                "precipitation_probability_max": 75
-            }
-        ],
-        "units": {
-            "temperature": "°C",
-            "wind_speed": "km/h",
-            "precipitation": "mm"
-        }
+  "status": "success",
+  "data": {
+    "city": "Banda Aceh",
+    "latitude": 5.5483,
+    "longitude": 95.3238,
+    "cached": true,
+    "cache_expires_at": "2025-01-01T11:00:00Z",
+    "forecast": [
+      {
+        "date": "2025-01-01",
+        "day_name": "Rabu",
+        "condition": "Cerah Berawan",
+        "temperature_max": 33.5,
+        "temperature_min": 24.1,
+        "humidity_mean": 76,
+        "wind_speed_max": 18.2,
+        "precipitation_sum": 0.0,
+        "precipitation_probability_max": 10
+      },
+      {
+        "date": "2025-01-02",
+        "day_name": "Kamis",
+        "condition": "Hujan Ringan",
+        "temperature_max": 29.8,
+        "temperature_min": 23.5,
+        "humidity_mean": 88,
+        "wind_speed_max": 22.0,
+        "precipitation_sum": 4.5,
+        "precipitation_probability_max": 75
+      }
+    ],
+    "units": {
+      "temperature": "°C",
+      "wind_speed": "km/h",
+      "precipitation": "mm"
     }
+  }
 }
 ```
 
@@ -319,8 +319,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Parameter latitude dan longitude wajib diisi."
+  "status": "error",
+  "message": "Parameter latitude dan longitude wajib diisi."
 }
 ```
 
@@ -328,8 +328,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Gagal mengambil data prakiraan dari layanan cuaca eksternal. Coba lagi nanti."
+  "status": "error",
+  "message": "Gagal mengambil data prakiraan dari layanan cuaca eksternal. Coba lagi nanti."
 }
 ```
 
@@ -362,24 +362,24 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "query": "Banda Aceh",
-        "count": 2,
-        "results": [
-            {
-                "id": 1214026,
-                "name": "Banda Aceh",
-                "latitude": 5.5483,
-                "longitude": 95.3238,
-                "country": "Indonesia",
-                "country_code": "ID",
-                "admin1": "Aceh",
-                "timezone": "Asia/Jakarta",
-                "display_name": "Banda Aceh, Aceh, Indonesia"
-            }
-        ]
-    }
+  "status": "success",
+  "data": {
+    "query": "Banda Aceh",
+    "count": 2,
+    "results": [
+      {
+        "id": 1214026,
+        "name": "Banda Aceh",
+        "latitude": 5.5483,
+        "longitude": 95.3238,
+        "country": "Indonesia",
+        "country_code": "ID",
+        "admin1": "Aceh",
+        "timezone": "Asia/Jakarta",
+        "display_name": "Banda Aceh, Aceh, Indonesia"
+      }
+    ]
+  }
 }
 ```
 
@@ -387,8 +387,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Parameter pencarian minimal 2 karakter."
+  "status": "error",
+  "message": "Parameter pencarian minimal 2 karakter."
 }
 ```
 
@@ -419,32 +419,32 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "count": 2,
-        "favorites": [
-            {
-                "id": 1,
-                "city_name": "Banda Aceh",
-                "latitude": 5.5483,
-                "longitude": 95.3238,
-                "country": "Indonesia",
-                "country_code": "ID",
-                "timezone": "Asia/Jakarta",
-                "created_at": "2025-01-01T09:00:00.000000Z"
-            },
-            {
-                "id": 2,
-                "city_name": "Jakarta",
-                "latitude": -6.2088,
-                "longitude": 106.8456,
-                "country": "Indonesia",
-                "country_code": "ID",
-                "timezone": "Asia/Jakarta",
-                "created_at": "2025-01-02T14:30:00.000000Z"
-            }
-        ]
-    }
+  "status": "success",
+  "data": {
+    "count": 2,
+    "favorites": [
+      {
+        "id": 1,
+        "city_name": "Banda Aceh",
+        "latitude": 5.5483,
+        "longitude": 95.3238,
+        "country": "Indonesia",
+        "country_code": "ID",
+        "timezone": "Asia/Jakarta",
+        "created_at": "2025-01-01T09:00:00.000000Z"
+      },
+      {
+        "id": 2,
+        "city_name": "Jakarta",
+        "latitude": -6.2088,
+        "longitude": 106.8456,
+        "country": "Indonesia",
+        "country_code": "ID",
+        "timezone": "Asia/Jakarta",
+        "created_at": "2025-01-02T14:30:00.000000Z"
+      }
+    ]
+  }
 }
 ```
 
@@ -452,8 +452,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Unauthenticated. Silakan login terlebih dahulu."
+  "status": "error",
+  "message": "Unauthenticated. Silakan login terlebih dahulu."
 }
 ```
 
@@ -483,12 +483,12 @@ Accept: application/json
 
 ```json
 {
-    "city_name": "string",
-    "latitude": "float",
-    "longitude": "float",
-    "country": "string",
-    "country_code": "string",
-    "timezone": "string"
+  "city_name": "string",
+  "latitude": "float",
+  "longitude": "float",
+  "country": "string",
+  "country_code": "string",
+  "timezone": "string"
 }
 ```
 
@@ -496,18 +496,18 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "message": "Lokasi berhasil ditambahkan ke favorit.",
-    "data": {
-        "id": 3,
-        "city_name": "Medan",
-        "latitude": 3.5952,
-        "longitude": 98.6722,
-        "country": "Indonesia",
-        "country_code": "ID",
-        "timezone": "Asia/Jakarta",
-        "created_at": "2025-01-03T08:00:00.000000Z"
-    }
+  "status": "success",
+  "message": "Lokasi berhasil ditambahkan ke favorit.",
+  "data": {
+    "id": 3,
+    "city_name": "Medan",
+    "latitude": 3.5952,
+    "longitude": 98.6722,
+    "country": "Indonesia",
+    "country_code": "ID",
+    "timezone": "Asia/Jakarta",
+    "created_at": "2025-01-03T08:00:00.000000Z"
+  }
 }
 ```
 
@@ -515,8 +515,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Lokasi ini sudah ada di daftar favorit Anda."
+  "status": "error",
+  "message": "Lokasi ini sudah ada di daftar favorit Anda."
 }
 ```
 
@@ -524,13 +524,13 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Validasi gagal.",
-    "errors": {
-        "city_name": ["Nama kota wajib diisi."],
-        "latitude": ["Latitude wajib diisi."],
-        "longitude": ["Longitude wajib diisi."]
-    }
+  "status": "error",
+  "message": "Validasi gagal.",
+  "errors": {
+    "city_name": ["Nama kota wajib diisi."],
+    "latitude": ["Latitude wajib diisi."],
+    "longitude": ["Longitude wajib diisi."]
+  }
 }
 ```
 
@@ -561,8 +561,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "message": "Lokasi berhasil dihapus dari favorit."
+  "status": "success",
+  "message": "Lokasi berhasil dihapus dari favorit."
 }
 ```
 
@@ -570,8 +570,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Lokasi favorit tidak ditemukan."
+  "status": "error",
+  "message": "Lokasi favorit tidak ditemukan."
 }
 ```
 
@@ -579,21 +579,24 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Anda tidak memiliki izin untuk menghapus data ini."
+  "status": "error",
+  "message": "Anda tidak memiliki izin untuk menghapus data ini."
 }
 ```
 
 ---
+
 ## Catatan Implementasi
 
 **HTTP Client:** Menggunakan Laravel HTTP Client (wrapper Guzzle bawaan Laravel)
 untuk komunikasi ke Open-Meteo API. Tidak menggunakan Axios atau library eksternal lainnya.
 
 **Arsitektur Backend:**
+
 - **Service Container:** Digunakan untuk binding dan dependency injection antar service class.
 - **Service Provider:** Mendaftarkan binding HTTP Client dan konfigurasi third-party API ke dalam container.
 - **Facades:** Digunakan untuk akses Http, Cache, dan Log secara ekspresif di seluruh lapisan aplikasi.
+
 ---
 
 ## 10. Get City Boundary GeoJSON
@@ -626,33 +629,33 @@ Accept: application/json
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "query": "Banda Aceh",
-        "cached": true,
-        "cache_expires_at": "2025-01-02T10:00:00Z",
-        "boundary": {
-            "type": "Feature",
-            "properties": {
-                "display_name": "Banda Aceh, Aceh, Indonesia",
-                "osm_id": 3629770,
-                "place_id": 298765432,
-                "boundingbox": ["5.4921", "5.6083", "95.2615", "95.4065"]
-            },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
-                    [
-                        [95.2615, 5.4921],
-                        [95.4065, 5.4921],
-                        [95.4065, 5.6083],
-                        [95.2615, 5.6083],
-                        [95.2615, 5.4921]
-                    ]
-                ]
-            }
-        }
+  "status": "success",
+  "data": {
+    "query": "Banda Aceh",
+    "cached": true,
+    "cache_expires_at": "2025-01-02T10:00:00Z",
+    "boundary": {
+      "type": "Feature",
+      "properties": {
+        "display_name": "Banda Aceh, Aceh, Indonesia",
+        "osm_id": 3629770,
+        "place_id": 298765432,
+        "boundingbox": ["5.4921", "5.6083", "95.2615", "95.4065"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [95.2615, 5.4921],
+            [95.4065, 5.4921],
+            [95.4065, 5.6083],
+            [95.2615, 5.6083],
+            [95.2615, 5.4921]
+          ]
+        ]
+      }
     }
+  }
 }
 ```
 
@@ -660,8 +663,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Batas wilayah untuk kota ini tidak ditemukan di OpenStreetMap."
+  "status": "error",
+  "message": "Batas wilayah untuk kota ini tidak ditemukan di OpenStreetMap."
 }
 ```
 
@@ -669,8 +672,8 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Parameter pencarian minimal 2 karakter."
+  "status": "error",
+  "message": "Parameter pencarian minimal 2 karakter."
 }
 ```
 
@@ -678,12 +681,13 @@ Accept: application/json
 
 ```json
 {
-    "status": "error",
-    "message": "Gagal mengambil data batas wilayah dari layanan eksternal. Coba lagi nanti."
+  "status": "error",
+  "message": "Gagal mengambil data batas wilayah dari layanan eksternal. Coba lagi nanti."
 }
 ```
 
 **Catatan Implementasi:**
+
 - Cache key format: `boundary_{q_normalized}` (lowercase, spasi diganti underscore)
 - TTL cache: **24 jam** (data batas wilayah sangat stabil, tidak perlu sering diperbarui)
 - Wajib kirim header `User-Agent` saat request ke Nominatim: `User-Agent: AeroCast/1.0 (contact: {email_kelompok})`
