@@ -1,0 +1,40 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    paths:
+      - 'Backend/**'
+  pull_request:
+    branches: [ "main", "master" ]
+    paths:
+      - 'Backend/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Backend
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, dom, fileinfo, sqlite3, pdo_sqlite
+        coverage: none
+
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+    - name: Copy .env
+      run: cp .env.example .env
+
+    - name: Generate Application Key
+      run: php artisan key:generate
+
+    - name: Run Tests
+      run: php artisan test
