@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Contracts\GeocodingServiceInterface;
+use App\Contracts\BoundaryServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Geocoding\SearchCityRequest;
 use App\Http\Requests\Geocoding\GetBoundaryRequest;
-use App\Services\OpenMeteoService;
-use App\Services\NominatimService;
 use Illuminate\Http\JsonResponse;
 
 class GeocodingController extends Controller
 {
     public function __construct(
-        private readonly OpenMeteoService $openMeteoService,
-        private readonly NominatimService $nominatimService,
+        private readonly GeocodingServiceInterface $geocodingService,
+        private readonly BoundaryServiceInterface $boundaryService,
     ) {}
 
     /**
@@ -23,7 +23,7 @@ class GeocodingController extends Controller
      */
     public function search(SearchCityRequest $request): JsonResponse
     {
-        $data = $this->openMeteoService->searchCity(
+        $data = $this->geocodingService->searchCity(
             query: $request->validated('q'),
             count: $request->integer('count', 5),
         );
@@ -41,7 +41,7 @@ class GeocodingController extends Controller
      */
     public function boundary(GetBoundaryRequest $request): JsonResponse
     {
-        $data = $this->nominatimService->getBoundary(
+        $data = $this->boundaryService->getBoundary(
             query: $request->validated('q'),
         );
 
@@ -58,3 +58,4 @@ class GeocodingController extends Controller
         ], 200);
     }
 }
+

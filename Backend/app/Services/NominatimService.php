@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
+use App\Contracts\BoundaryServiceInterface;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\ConnectionException;
 
-class NominatimService
+class NominatimService implements BoundaryServiceInterface
 {
     /** Cache TTL for boundary: 24 hours */
     const CACHE_TTL_BOUNDARY = 86400;

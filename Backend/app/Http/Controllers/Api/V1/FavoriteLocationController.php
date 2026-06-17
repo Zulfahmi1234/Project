@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Contracts\FavoriteLocationServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Favorites\StoreFavoriteRequest;
-use App\Services\FavoriteLocationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class FavoriteLocationController extends Controller
 {
     public function __construct(
-        private readonly FavoriteLocationService $favoriteLocationService,
+        private readonly FavoriteLocationServiceInterface $favoriteLocationService,
     ) {}
 
     /**

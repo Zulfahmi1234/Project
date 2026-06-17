@@ -2,12 +2,14 @@
 
 namespace App\Services;
 
+use App\Contracts\WeatherServiceInterface;
+use App\Contracts\GeocodingServiceInterface;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\ConnectionException;
 use Carbon\Carbon;
 
-class OpenMeteoService
+class OpenMeteoService implements WeatherServiceInterface, GeocodingServiceInterface
 {
     /** Cache TTL for current weather: 10 minutes */
     const CACHE_TTL_CURRENT = 600;

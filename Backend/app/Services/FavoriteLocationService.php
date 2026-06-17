@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Contracts\FavoriteLocationServiceInterface;
 use App\Models\FavoriteLocation;
 use Illuminate\Database\Eloquent\Collection;
 
-class FavoriteLocationService
+class FavoriteLocationService implements FavoriteLocationServiceInterface
 {
     /**
      * Get all favorite locations for a user.

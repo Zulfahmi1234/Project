@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Contracts\WeatherServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Weather\GetWeatherRequest;
-use App\Services\OpenMeteoService;
 use Illuminate\Http\JsonResponse;
 
 class WeatherController extends Controller
 {
     public function __construct(
-        private readonly OpenMeteoService $openMeteoService,
+        private readonly WeatherServiceInterface $weatherService,
     ) {}
 
     /**
@@ -20,7 +20,7 @@ class WeatherController extends Controller
      */
     public function current(GetWeatherRequest $request): JsonResponse
     {
-        $data = $this->openMeteoService->getCurrentWeather(
+        $data = $this->weatherService->getCurrentWeather(
             lat: (float) $request->validated('latitude'),
             lng: (float) $request->validated('longitude'),
             cityName: $request->validated('city_name'),
@@ -39,7 +39,7 @@ class WeatherController extends Controller
      */
     public function forecast(GetWeatherRequest $request): JsonResponse
     {
-        $data = $this->openMeteoService->getForecast(
+        $data = $this->weatherService->getForecast(
             lat: (float) $request->validated('latitude'),
             lng: (float) $request->validated('longitude'),
             cityName: $request->validated('city_name'),

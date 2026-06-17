@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Contracts\AuthServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function __construct(
+        private readonly AuthServiceInterface $authService,
+    ) {}
+
     /**
      * Register a new user.
      *
@@ -19,26 +22,20 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request): JsonResponse
     {
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $result = $this->authService->register($request->validated());
 
         return response()->json([
             'status'  => 'success',
             'message' => 'Registrasi berhasil.',
             'data'    => [
                 'user' => [
-                    'id'         => $user->id,
-                    'name'       => $user->name,
-                    'email'      => $user->email,
-                    'created_at' => $user->created_at,
+                    'id'         => $result['user']->id,
+                    'name'       => $result['user']->name,
+                    'email'      => $result['user']->email,
+                    'created_at' => $result['user']->created_at,
                 ],
-                'access_token' => $token,
-                'token_type'   => 'Bearer',
+                'access_token' => $result['access_token'],
+                'token_type'   => $result['token_type'],
             ],
         ], 201);
     }
@@ -50,28 +47,26 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request): JsonResponse
     {
-        $user = User::where('email', $request->email)->first();
+        $result = $this->authService->login($request->validated());
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if ($result === null) {
             return response()->json([
                 'status'  => 'error',
                 'message' => 'Email atau password salah.',
             ], 401);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
             'status'  => 'success',
             'message' => 'Login berhasil.',
             'data'    => [
                 'user' => [
-                    'id'    => $user->id,
-                    'name'  => $user->name,
-                    'email' => $user->email,
+                    'id'    => $result['user']->id,
+                    'name'  => $result['user']->name,
+                    'email' => $result['user']->email,
                 ],
-                'access_token' => $token,
-                'token_type'   => 'Bearer',
+                'access_token' => $result['access_token'],
+                'token_type'   => $result['token_type'],
             ],
         ], 200);
     }
@@ -83,7 +78,7 @@ class AuthController extends Controller
      */
     public function logout(Request $request): JsonResponse
     {
-        $request->user()->currentAccessToken()->delete();
+        $this->authService->logout($request->user());
 
         return response()->json([
             'status'  => 'success',
@@ -91,3 +86,4 @@ class AuthController extends Controller
         ], 200);
     }
 }
+
