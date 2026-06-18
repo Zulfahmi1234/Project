@@ -5,10 +5,12 @@ on:
     branches: [ "main", "master" ]
     paths:
       - 'Backend/**'
+      - '.github/workflows/backend-ci.yml'
   pull_request:
     branches: [ "main", "master" ]
     paths:
       - 'Backend/**'
+      - '.github/workflows/backend-ci.yml'
 
 jobs:
   test:
@@ -28,7 +30,7 @@ jobs:
         coverage: none
 
     - name: Install Dependencies
-      run: composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
 
     - name: Copy .env
       run: cp .env.example .env
