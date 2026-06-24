@@ -7,6 +7,8 @@ export interface GeocodingResult {
   latitude: number;
   longitude: number;
   country: string;
+  country_code?: string;
+  timezone?: string;
   admin1?: string;
   feature_code?: string;
 }
