@@ -21,6 +21,7 @@ export function AuthModal() {
   
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
     // Sync state on mount just in case
@@ -35,6 +36,8 @@ export function AuthModal() {
   });
 
   const handleLogout = async () => {
+    if (isLoggingOut) return; // Guard: cegah klik ganda
+    setIsLoggingOut(true);
     try {
       await api.post('/auth/logout');
     } catch (error) {
@@ -43,6 +46,7 @@ export function AuthModal() {
       localStorage.removeItem('access_token');
       queryClient.clear(); // Bersihkan data cache (favorites, dll) secara instan tanpa reload
       setIsAuthenticated(false);
+      setIsLoggingOut(false);
       toast.success("Sesi Diakhiri. Anda telah Logout.");
     }
   };
@@ -51,9 +55,10 @@ export function AuthModal() {
     return (
       <button
         onClick={handleLogout}
-        className="glass-panel hard-shadow px-4 h-12 flex items-center text-muted-foreground hover:text-destructive font-mono-data text-xs uppercase tracking-widest transition-colors"
+        disabled={isLoggingOut}
+        className="glass-panel hard-shadow px-4 h-12 flex items-center text-muted-foreground hover:text-destructive font-mono-data text-xs uppercase tracking-widest transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        [ LOGOUT ]
+        {isLoggingOut ? <Loader2 className="w-4 h-4 animate-spin" /> : "[ LOGOUT ]"}
       </button>
     );
   }

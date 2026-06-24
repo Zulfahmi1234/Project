@@ -11,6 +11,7 @@ export function SearchBar() {
   const [inputValue, setInputValue] = useState("");
   const [debouncedValue, setDebouncedValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [isSelecting, setIsSelecting] = useState(false); // Guard: cegah klik ganda saat flyTo
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { data: results, isLoading } = useGeocoding(debouncedValue);
@@ -39,6 +40,8 @@ export function SearchBar() {
   }, []);
 
   const handleSelectCity = (city: GeocodingResult) => {
+    if (isSelecting) return; // Guard: cegah klik ganda
+    setIsSelecting(true);
     setInputValue(city.name);
     setIsFocused(false);
     
@@ -78,6 +81,7 @@ export function SearchBar() {
           country_code: city.country_code || "XX",
           timezone: city.timezone || "UTC",
         });
+        setIsSelecting(false); // Buka kembali akses setelah animasi selesai
       }, 3500);
     } else {
       setSelectedLocation({
@@ -85,6 +89,7 @@ export function SearchBar() {
         latitude: city.latitude,
         longitude: city.longitude,
       });
+      setIsSelecting(false);
     }
   };
 
@@ -123,7 +128,8 @@ export function SearchBar() {
                   <li key={city.id}>
                     <button
                       onClick={() => handleSelectCity(city)}
-                      className="w-full flex items-start gap-3 p-3 hover:bg-white/10 transition-colors text-left"
+                      disabled={isSelecting}
+                      className="w-full flex items-start gap-3 p-3 hover:bg-white/10 transition-colors text-left disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                       <div>

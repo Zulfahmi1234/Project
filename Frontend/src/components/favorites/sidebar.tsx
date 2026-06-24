@@ -10,6 +10,7 @@ import { useAuthStore } from "@/stores/auth-store";
 
 export function FavoritesSidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSelecting, setIsSelecting] = useState(false); // Guard: cegah klik ganda saat flyTo
   const { isAuthenticated, openAuthModal } = useAuthStore();
   const { data: favorites, isLoading } = useFavorites();
   const { mutate: removeFavorite, isPending: isRemoving } = useRemoveFavorite();
@@ -33,6 +34,8 @@ export function FavoritesSidebar() {
   }, [map, isOpen]);
 
   const handleSelect = (fav: any) => {
+    if (isSelecting) return; // Guard: cegah klik ganda
+    setIsSelecting(true);
     setIsOpen(false); // Tutup sidebar saat dipilih
     if (map) {
       setIsFlying(true);
@@ -56,6 +59,7 @@ export function FavoritesSidebar() {
           country_code: fav.country_code,
           timezone: fav.timezone,
         });
+        setIsSelecting(false); // Buka kembali akses setelah animasi selesai
       }, 3500);
     } else {
       setSelectedLocation({
@@ -66,6 +70,7 @@ export function FavoritesSidebar() {
         country_code: fav.country_code,
         timezone: fav.timezone,
       });
+      setIsSelecting(false);
     }
   };
 
@@ -121,7 +126,8 @@ export function FavoritesSidebar() {
                   >
                     <button 
                       onClick={() => handleSelect(fav)}
-                      className="flex-1 text-left flex items-center gap-3 overflow-hidden"
+                      disabled={isSelecting}
+                      className="flex-1 text-left flex items-center gap-3 overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <MapPin className="w-4 h-4 text-primary shrink-0" />
                       <span className="font-heading text-sm uppercase text-foreground truncate">
