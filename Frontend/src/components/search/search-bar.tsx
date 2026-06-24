@@ -88,6 +88,9 @@ export function SearchBar() {
         name: city.name,
         latitude: city.latitude,
         longitude: city.longitude,
+        country: city.country || "Unknown",
+        country_code: city.country_code || "XX",
+        timezone: city.timezone || "UTC",
       });
       setIsSelecting(false);
     }
