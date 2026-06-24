@@ -8,6 +8,9 @@ export interface FavoriteLocation {
   city_name: string;
   latitude: number;
   longitude: number;
+  country?: string;
+  country_code?: string;
+  timezone?: string;
 }
 
 export function useFavorites() {
