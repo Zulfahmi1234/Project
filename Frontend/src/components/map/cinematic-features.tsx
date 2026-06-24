@@ -169,9 +169,9 @@ export function FavoriteBeacons() {
                 name: fav.city_name,
                 latitude: fav.latitude,
                 longitude: fav.longitude,
-                country: fav.country,
-                country_code: fav.country_code,
-                timezone: fav.timezone,
+                country: fav.country || '',
+                country_code: fav.country_code || '',
+                timezone: fav.timezone || '',
               })}
               title={`Buka ${fav.city_name}`}
             >
