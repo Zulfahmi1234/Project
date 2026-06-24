@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-echo "Menjalankan Composer..."
-composer install --no-dev --working-dir=/var/www/html
 
 echo "Mengoptimalkan Cache Laravel..."
 php artisan config:cache
