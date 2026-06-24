@@ -30,7 +30,7 @@ export default function MapPage() {
   if (!mounted) return null;
 
   return (
-    <div className="w-full h-screen relative bg-background overflow-hidden">
+    <div className="w-full h-[100dvh] relative bg-background overflow-hidden">
       {MAPBOX_TOKEN ? (
         <MapProvider>
           <Map
@@ -59,8 +59,8 @@ export default function MapPage() {
           {/* Overlays */}
           <FavoritesSidebar />
 
-          <div className="absolute top-6 right-6 z-10 w-full md:w-auto px-6 md:px-0 pointer-events-none flex justify-end">
-            <div className="pointer-events-auto flex items-center gap-4">
+          <div className="absolute top-4 right-4 left-4 md:left-auto md:top-6 md:right-6 z-10 pointer-events-none flex flex-col items-end gap-3 mt-14 md:mt-0">
+            <div className="pointer-events-auto flex flex-col md:flex-row items-end md:items-center gap-3 md:gap-4 w-full md:w-auto">
               <AuthModal />
               <SearchBar />
             </div>
@@ -77,11 +77,11 @@ export default function MapPage() {
       )}
 
       {/* Brand Header */}
-      <div className="absolute top-6 left-6 z-10 pointer-events-none">
-        <h1 className="font-heading text-3xl md:text-4xl text-primary uppercase tracking-wider drop-shadow-md font-bold">
+      <div className="absolute top-4 left-4 md:top-6 md:left-6 z-10 pointer-events-none">
+        <h1 className="font-heading text-2xl md:text-4xl text-primary uppercase tracking-wider drop-shadow-md font-bold">
           AeroCast
         </h1>
-        <p className="font-mono-data text-muted-foreground text-[10px] uppercase tracking-widest mt-1">
+        <p className="font-mono-data text-muted-foreground text-[8px] md:text-[10px] uppercase tracking-widest mt-1">
           Atmospheric Data Relay
         </p>
       </div>

@@ -47,7 +47,7 @@ export function FloatingWeatherPanel() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 40, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 22, mass: 0.8 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[calc(100vw-3rem)] md:w-[800px] glass-panel hard-shadow flex flex-col pointer-events-auto"
+          className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 w-[calc(100vw-2rem)] md:w-[800px] glass-panel hard-shadow flex flex-col pointer-events-auto"
         >
             {/* Header */}
           <div className="flex justify-between items-center p-4 border-b border-border dither-pattern">

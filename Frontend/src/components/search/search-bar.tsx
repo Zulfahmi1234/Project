@@ -97,7 +97,7 @@ export function SearchBar() {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full md:w-96 max-w-[calc(100vw-3rem)]">
+    <div ref={containerRef} className="relative w-full md:w-96 max-w-[calc(100vw-2rem)] md:max-w-none">
       <div className="relative group">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-muted-foreground">
           {isLoading && isFocused ? (
