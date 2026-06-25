@@ -6,13 +6,15 @@
 
 **Role Penanggung Jawab:** `Backend Developer`
 
-**Sumber Data:** `Internal System (PostgreSQL)`
+**Sumber Data:** `Internal System (PostgreSQL via Supabase)`
 
 **Deskripsi & Ekspektasi:**
 Sistem autentikasi menggunakan JSON Web Token (JWT). Fitur ini memungkinkan pengguna untuk membuat akun dan login agar dapat menyimpan preferensi personal mereka. Diharapkan API dapat memvalidasi kredensial dengan aman dan mengembalikan token yang akan disimpan oleh klien (Frontend).
 
 **Package yang Digunakan:**
 
+- `axios` — HTTP client untuk komunikasi API autentikasi ke backend Laravel
+- `zustand` — manajemen state global untuk status autentikasi pengguna
 - `react-hot-toast` — menampilkan notifikasi sukses/gagal saat login dan register
 
 ---
@@ -77,7 +79,7 @@ Fitur _search bar_ dinamis yang memungkinkan pengguna mencari nama kota di selur
 - `shadcn/ui` — komponen input dan dropdown hasil pencarian
 - `lucide-react` — icon search dan location pin
 - `framer-motion` — animasi dropdown saat hasil pencarian muncul
-- `react-query` — debounce dan caching hasil pencarian kota
+- `@tanstack/react-query` — manajemen state server, debounce, dan caching hasil pencarian kota
 
 ---
 
@@ -119,6 +121,7 @@ Antarmuka utama aplikasi diubah dari layout dashboard kartu statis menjadi **pet
 
 - `mapbox-gl` — core engine rendering peta
 - `react-map-gl` — React wrapper deklaratif untuk Mapbox GL JS
+- `zustand` — manajemen state global untuk interaksi dan status koordinat peta
 
 ---
 
