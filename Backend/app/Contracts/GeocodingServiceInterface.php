@@ -5,21 +5,21 @@ namespace App\Contracts;
 use Illuminate\Http\Client\ConnectionException;
 
 /**
- * Contract for geocoding (city search) operations.
+ * Kontrak untuk operasi geocoding (pencarian kota).
  *
- * Proxies Open-Meteo Geocoding API to search for cities
- * by name and return their coordinates and metadata.
+ * Menjadi perantara (proxy) ke Open-Meteo Geocoding API untuk mencari kota
+ * berdasarkan nama dan mengembalikan koordinat serta metadatanya.
  */
 interface GeocodingServiceInterface
 {
     /**
-     * Search cities by name via Open-Meteo Geocoding API.
+     * Mencari kota berdasarkan nama melalui Open-Meteo Geocoding API.
      *
-     * Returns a list of matching cities with coordinates, country info,
-     * and a pre-formatted display name for the Frontend dropdown.
+     * Mengembalikan daftar kota yang cocok beserta koordinat, info negara,
+     * dan nama tampilan (display name) yang sudah diformat untuk dropdown Frontend.
      *
-     * @param string $query Search query (city name or partial name)
-     * @param int    $count Maximum number of results to return (default: 5)
+     * @param string $query Kueri pencarian (nama kota atau sebagian nama)
+     * @param int    $count Jumlah maksimum hasil yang dikembalikan (default: 5)
      * @return array{
      *     query: string,
      *     count: int,
@@ -36,7 +36,7 @@ interface GeocodingServiceInterface
      *     }>
      * }
      *
-     * @throws ConnectionException When Open-Meteo Geocoding API is unreachable
+     * @throws ConnectionException Jika Open-Meteo Geocoding API tidak dapat dijangkau
      */
     public function searchCity(string $query, int $count = 5): array;
 }

@@ -5,26 +5,26 @@ namespace App\Contracts;
 use Illuminate\Http\Client\ConnectionException;
 
 /**
- * Contract for weather data retrieval.
+ * Kontrak untuk pengambilan data cuaca.
  *
- * Proxies Open-Meteo API to fetch current weather and 7-day forecast.
- * Implementations must cache responses to reduce third-party API load.
+ * Menjadi perantara ke Open-Meteo API untuk mengambil data cuaca saat ini dan prakiraan 7 hari ke depan.
+ * Implementasi wajib melakukan cache terhadap respon untuk mengurangi beban API pihak ketiga.
  *
- * Cache TTL guidelines:
- * - Current weather: 10 minutes
- * - Forecast: 1 hour
+ * Panduan waktu hidup cache (TTL):
+ * - Cuaca saat ini: 10 menit
+ * - Prakiraan cuaca: 1 jam
  */
 interface WeatherServiceInterface
 {
     /**
-     * Get current weather data for a specific location.
+     * Mengambil data cuaca saat ini untuk suatu lokasi spesifik.
      *
-     * Returns formatted weather metrics including temperature, humidity,
-     * wind speed/direction, and WMO weather condition translated to Indonesian.
+     * Mengembalikan metrik cuaca yang sudah diformat termasuk suhu, kelembapan,
+     * kecepatan/arah angin, dan kondisi cuaca WMO yang telah diterjemahkan ke Bahasa Indonesia.
      *
-     * @param float  $lat      Latitude of the location
-     * @param float  $lng      Longitude of the location
-     * @param string $cityName City name for display in response
+     * @param float  $lat      Garis lintang (Latitude) lokasi
+     * @param float  $lng      Garis bujur (Longitude) lokasi
+     * @param string $cityName Nama kota untuk ditampilkan pada respon
      * @return array{
      *     city: string,
      *     latitude: float,
@@ -47,19 +47,19 @@ interface WeatherServiceInterface
      *     }
      * }
      *
-     * @throws ConnectionException When Open-Meteo API is unreachable
+     * @throws ConnectionException Jika Open-Meteo API tidak dapat dijangkau
      */
     public function getCurrentWeather(float $lat, float $lng, string $cityName): array;
 
     /**
-     * Get 7-day weather forecast for a specific location.
+     * Mengambil prakiraan cuaca 7 hari untuk suatu lokasi spesifik.
      *
-     * Returns daily forecast data including temperature range, precipitation,
-     * wind speed, and humidity. Response includes cache metadata.
+     * Mengembalikan data prakiraan harian termasuk rentang suhu, curah hujan,
+     * kecepatan angin, dan kelembapan. Respon menyertakan metadata cache.
      *
-     * @param float  $lat      Latitude of the location
-     * @param float  $lng      Longitude of the location
-     * @param string $cityName City name for display in response
+     * @param float  $lat      Garis lintang (Latitude) lokasi
+     * @param float  $lng      Garis bujur (Longitude) lokasi
+     * @param string $cityName Nama kota untuk ditampilkan pada respon
      * @return array{
      *     city: string,
      *     latitude: float,
@@ -84,7 +84,7 @@ interface WeatherServiceInterface
      *     cache_expires_at: string|null
      * }
      *
-     * @throws ConnectionException When Open-Meteo API is unreachable
+     * @throws ConnectionException Jika Open-Meteo API tidak dapat dijangkau
      */
     public function getForecast(float $lat, float $lng, string $cityName): array;
 }

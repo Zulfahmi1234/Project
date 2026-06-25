@@ -5,35 +5,35 @@ namespace App\Contracts;
 use App\Models\User;
 
 /**
- * Contract for authentication operations.
+ * Kontrak untuk operasi autentikasi.
  *
- * Handles user registration, login credential verification,
- * and token management (Sanctum-based).
+ * Menangani registrasi pengguna, verifikasi kredensial login,
+ * dan manajemen token (berbasis Sanctum).
  */
 interface AuthServiceInterface
 {
     /**
-     * Register a new user and create an access token.
+     * Mendaftarkan pengguna baru dan membuat access token.
      *
-     * @param array{name: string, email: string, password: string} $data Validated registration data
+     * @param array{name: string, email: string, password: string} $data Data registrasi yang sudah divalidasi
      * @return array{user: User, access_token: string, token_type: string}
      */
     public function register(array $data): array;
 
     /**
-     * Attempt to authenticate a user with email and password.
+     * Mencoba melakukan autentikasi pengguna dengan email dan password.
      *
-     * Returns user data and access token on success, or null on failure.
+     * Mengembalikan data pengguna dan access token jika sukses, atau null jika gagal.
      *
-     * @param array{email: string, password: string} $credentials Validated login credentials
+     * @param array{email: string, password: string} $credentials Kredensial login yang sudah divalidasi
      * @return array{user: User, access_token: string, token_type: string}|null
      */
     public function login(array $credentials): ?array;
 
     /**
-     * Logout the authenticated user by revoking the current access token.
+     * Mengeluarkan (logout) pengguna yang terautentikasi dengan mencabut access token saat ini.
      *
-     * @param User $user The authenticated user
+     * @param User $user Pengguna yang terautentikasi
      * @return void
      */
     public function logout(User $user): void;

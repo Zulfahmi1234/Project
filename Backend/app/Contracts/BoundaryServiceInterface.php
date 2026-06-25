@@ -5,25 +5,25 @@ namespace App\Contracts;
 use Illuminate\Http\Client\ConnectionException;
 
 /**
- * Contract for GeoJSON boundary retrieval.
+ * Kontrak untuk pengambilan batas (boundary) wilayah GeoJSON.
  *
- * Proxies Nominatim API to fetch administrative boundary polygons
- * for city/region visualization on the map.
+ * Menjadi perantara ke Nominatim API untuk mengambil poligon batas administratif
+ * guna divisualisasikan pada peta (map) kota/wilayah.
  *
- * IMPORTANT: Nominatim has a rate limit of 1 request/second.
- * Implementations MUST cache results for 24 hours.
- * Cache key format: boundary_{query_normalized}
+ * PENTING: Nominatim memiliki batas laju (rate limit) 1 request/detik.
+ * Implementasi WAJIB melakukan cache hasil selama 24 jam.
+ * Format key cache: boundary_{query_normalized}
  */
 interface BoundaryServiceInterface
 {
     /**
-     * Get GeoJSON boundary polygon for a city/region.
+     * Mengambil poligon batas GeoJSON untuk suatu kota/wilayah.
      *
-     * Returns a GeoJSON Feature object with the boundary polygon
-     * and metadata. Returns null if no boundary is found.
-     * Null results should NOT be cached.
+     * Mengembalikan objek GeoJSON Feature beserta poligon batas
+     * dan metadatanya. Mengembalikan null jika batas tidak ditemukan.
+     * Hasil null TIDAK BOLEH di-cache.
      *
-     * @param string $query City or region name to search
+     * @param string $query Nama kota atau wilayah yang dicari
      * @return array{
      *     query: string,
      *     cached: bool,
@@ -38,9 +38,9 @@ interface BoundaryServiceInterface
      *         },
      *         geometry: array|null
      *     }
-     * }|null Null when no boundary is found for the query
+     * }|null Null jika tidak ada batas wilayah yang ditemukan dari pencarian
      *
-     * @throws ConnectionException When Nominatim API is unreachable
+     * @throws ConnectionException Jika Nominatim API tidak dapat dijangkau
      */
     public function getBoundary(string $query): ?array;
 }

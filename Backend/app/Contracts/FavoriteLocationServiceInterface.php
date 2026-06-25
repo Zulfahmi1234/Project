@@ -6,31 +6,31 @@ use App\Models\FavoriteLocation;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Contract for favorite location management.
+ * Kontrak untuk manajemen lokasi favorit.
  *
- * Handles CRUD operations for user's bookmarked locations.
- * All operations are scoped to the authenticated user's ID
- * to enforce ownership.
+ * Menangani operasi CRUD untuk lokasi yang disimpan (bookmark) oleh pengguna.
+ * Semua operasi dibatasi (scoped) pada ID pengguna yang terautentikasi
+ * untuk menegakkan hak kepemilikan.
  */
 interface FavoriteLocationServiceInterface
 {
     /**
-     * Get all favorite locations for a user.
+     * Mengambil semua lokasi favorit milik seorang pengguna.
      *
-     * Results are ordered by creation date (newest first).
+     * Hasil diurutkan berdasarkan tanggal pembuatan (terbaru di atas).
      *
-     * @param int $userId The authenticated user's ID
+     * @param int $userId ID pengguna yang terautentikasi
      * @return Collection<int, FavoriteLocation>
      */
     public function getAll(int $userId): Collection;
 
     /**
-     * Store a new favorite location.
+     * Menyimpan lokasi favorit baru.
      *
-     * Checks for duplicates based on (user_id, city_name, latitude, longitude).
-     * If a duplicate exists, returns duplicate flag without creating a new record.
+     * Melakukan pengecekan duplikasi berdasarkan (user_id, city_name, latitude, longitude).
+     * Jika duplikat ditemukan, maka akan mengembalikan flag duplicate tanpa membuat record baru.
      *
-     * @param int   $userId The authenticated user's ID
+     * @param int   $userId ID pengguna yang terautentikasi
      * @param array{
      *     city_name: string,
      *     latitude: float,
@@ -38,21 +38,21 @@ interface FavoriteLocationServiceInterface
      *     country: string,
      *     country_code: string,
      *     timezone: string
-     * } $data Validated location data
+     * } $data Data lokasi yang sudah divalidasi
      * @return array{location: FavoriteLocation|null, duplicate: bool}
      */
     public function store(int $userId, array $data): array;
 
     /**
-     * Delete a favorite location by ID.
+     * Menghapus lokasi favorit berdasarkan ID.
      *
-     * Verifies ownership before deletion. Returns result with
-     * success flag and failure reason if applicable.
+     * Memverifikasi kepemilikan sebelum penghapusan. Mengembalikan hasil dengan
+     * flag success dan alasan kegagalan jika ada.
      *
-     * @param int $userId     The authenticated user's ID
-     * @param int $locationId The favorite location ID to delete
+     * @param int $userId     ID pengguna yang terautentikasi
+     * @param int $locationId ID lokasi favorit yang akan dihapus
      * @return array{success: bool, reason: string|null}
-     *     reason can be: 'not_found' | 'forbidden' | null (on success)
+     *     reason bisa bernilai: 'not_found' | 'forbidden' | null (jika sukses)
      */
     public function delete(int $userId, int $locationId): array;
 }
