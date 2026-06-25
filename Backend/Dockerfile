@@ -20,4 +20,4 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Beri hak akses Nginx ke folder penting Laravel (Image ini menggunakan user 'application')
-RUN chown -R application:application /app/storage /app/bootstrap/cache
+RUN chown -R application:application /app/storage /app/bootstrap/cache

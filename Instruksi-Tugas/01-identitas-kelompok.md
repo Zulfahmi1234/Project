@@ -19,7 +19,7 @@
 - Nama Lengkap: `Ikhlassul Amal`
 - NIM: `230705105`
 - Role: `Frontend Developer`
-- Teknologi: `Next.js, Tailwind CSS v4, React Query, Supabase Auth`
+- Teknologi: `Next.js, Tailwind CSS v4, @tanstack/react-query, Zustand`
 
 **Anggota 2**
 
@@ -39,7 +39,7 @@
 
 ## Stack Teknologi
 
-**Frontend:** `Next.js (React), Supabase Auth`
+**Frontend:** `Next.js (React), Zustand, Axios (API Client)`
 
 **Backend:** `Laravel 13` _(wajib)_
 
@@ -56,6 +56,10 @@
 - `framer-motion` — animasi kompleks pada komponen UI
 - `auto-animate` — animasi otomatis untuk list dan card
 - `tailwindcss-animate` — animasi ringan via Tailwind className
+
+**State Management**
+
+- `zustand` — manajemen state global untuk status autentikasi dan peta interaktif
 
 **Komponen Siap Pakai**
 
