@@ -10,6 +10,14 @@
 
 **Repositori:** `https://github.com/Zulfahmi1234/Project`
 
+**Link Web (Deploy):** 
+- Frontend: `https://aerocast-weather.vercel.app/map`
+- Backend API: `https://aerocast-backend.up.railway.app`
+
+**Akun Demo / Login:**
+- Username / Email: `admin@gmail.com` 
+- Password: `password123` 
+
 ---
 
 ## Anggota & Role
